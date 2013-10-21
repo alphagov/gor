@@ -92,6 +92,18 @@ func Run() {
 			currentRPS++
 		}
 
+		// HACK: This does not belong here.
+		if Settings.GetOnly {
+			buf := bytes.NewBuffer(m.Bytes())
+			reader := bufio.NewReader(buf)
+
+			request, err := http.ReadRequest(reader)
+
+			if request.Method != "GET" || err != nil {
+				continue
+			}
+		}
+
 		if messageLogger != nil {
 			go func() {
 				messageBuffer := new(bytes.Buffer)

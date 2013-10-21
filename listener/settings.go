@@ -25,6 +25,7 @@ type ListenerSettings struct {
 	ReplayLimit int
 
 	Verbose bool
+	GetOnly bool
 }
 
 var Settings ListenerSettings = ListenerSettings{}
@@ -53,4 +54,5 @@ func init() {
 	flag.StringVar(&Settings.FileToReplayPath, "file", "", "File to store captured requests")
 
 	flag.BoolVar(&Settings.Verbose, "verbose", false, "Log requests")
+	flag.BoolVar(&Settings.GetOnly, "getOnly", false, "Only capture GET requests")
 }
